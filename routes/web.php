@@ -13,8 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/back', function () {
-    return view('back.index');
+Route::prefix('dashboard')->group(function () {
+
+    Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'index']);
+    Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'create']);
+    Route::get('users', [\App\Http\Controllers\Admin\UserController::class, 'edit']);
+
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
 });
 
 Route::get('/', function () {
